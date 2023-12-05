@@ -1,4 +1,4 @@
-from html import HTMLBuilder
+from html_3 import HTMLBuilder
 
 
 class HTMLProfile:
@@ -20,33 +20,33 @@ class CVProfiler(HTMLProfile):
         super().add_education(place, degree, year)
         return self
 
-    def add_project(self, description):
-        super().add_project(description)
+    def add_project(self, title):
+        super().add_project(title)
         return self
 
-    def add_contact(self, **contacts):
-        super().add_contact(contacts)
+    def add_contact(self, devianart, telegram):
+        super().add_contact(devianart, telegram)
         return self
 
 
 class CVProfilerBuilder:
     def __init__(self, name, age, job, email):
-        self.builder = HTMLBuilder('html').nested('body')
-        self.builder.nested('head').sibling('title', f'{name}: портфолио')
-        self.builder.nested('div').sibling('h2', 'Обо мне').sibling('p',\
-            f'{name}, {age} лет, {job}, {email}')
+        self.builder = HTMLBuilder("html").nested("body")
+        self.builder.nested("head").sibling("title", f"{name}: портфолио")
+        self.builder.nested("div").sibling("h2", "Обо мне").sibling("p",\
+            f"{name}, {age} лет, {job}, {email}")
 
     def add_education(self, place, degree, year):
-        self.builder.nested('div').sibling('h2', 'Образование')\
-        .sibling('p', f'{place}, {degree}, {year}')
+        self.builder.nested("div").sibling("h2", "Образование")\
+        .sibling("p", f"{place}, {degree}, {year}")
         return self
 
     def add_project(self, title):
-        self.builder.nested('div').sibling('h2', 'Проекты').sibling('p', title)
+        self.builder.nested("div").sibling("h2", "Проекты").sibling("p", title)
         return self
 
     def add_contact(self, devianart, telegram):
-        self.builder.nested('div').sibling('h2', 'Контакты').sibling("p",\
+        self.builder.nested("div").sibling("h2", "Контакты").sibling("p",\
             f"devianart: {devianart}").sibling("p", f"telegram: {telegram}") 
         return self
 
@@ -54,10 +54,10 @@ class CVProfilerBuilder:
         return self.builder.build()
 
 
-cv1 = CVProfilerBuilder('Иванов Иван Иванович', 26, 'художник-фрилансер',
-        'ivv@abc.de')\
-   .add_education('Архитектурная Академия', 'Компьютерный дизайн', 2019)\
-   .add_project('Разработка логотипа для компании по производству снеков')\
-   .add_contact('ivovuvan_in_art', '@ivovuvan')\
+cv1 = CVProfilerBuilder("Иванов Иван Иванович", 26, "художник-фрилансер",
+        "ivv@abc.de")\
+   .add_education("Архитектурная Академия", "Компьютерный дизайн", 2019)\
+   .add_project("Разработка логотипа для компании по производству снеков")\
+   .add_contact("ivovuvan_in_art", "@ivovuvan")\
    .build()
 print(cv1)
